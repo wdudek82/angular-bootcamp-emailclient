@@ -55,9 +55,13 @@ export class AuthService {
   }
 
   checkAuth(): Observable<SignedinResponse> {
-    return this.http
-      .get<SignedinResponse>(`${this.baseUrl}/signedin`)
-      .pipe(tap((res) => console.log(res)));
+    return this.http.get<SignedinResponse>(`${this.baseUrl}/signedin`).pipe(
+      tap((res) => {
+        if (res.authenticated) {
+          this.signedin$.next(true);
+        }
+      }),
+    );
   }
 
   signout() {
