@@ -2,12 +2,10 @@
   <a href="/" class="item">Angular Email</a>
 
   <div class="right menu">
-<!--    <ng-container *ngIf="isSignedin">-->
+    <!--    <ng-container *ngIf="isSignedin">-->
     <ng-container *ngIf="signedin$ | async">
       <a routerLink="/inbox" routerLinkActive="active" class="ui item">Inbox</a>
-      <a routerLinkActive="active" class="ui item" (click)="onSignOut()"
-        >Sign Out</a
-      >
+      <a routerLink="/signout" routerLinkActive="active" class="ui item">Sign Out</a>
     </ng-container>
     <ng-container *ngIf="!(signedin$ | async)">
       <a
