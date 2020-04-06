@@ -28,21 +28,32 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    if (this.authForm.invalid) {
+      return;
+    }
+
     this.authService.signin(this.authForm.value).subscribe(
       () => {
         this.router.navigate(['/']);
       },
       (errorObj) => {
-        console.log(errorObj);
-
+        let errors = {};
         const { error } = errorObj;
+        if (!errorObj.status) {
+          errors = { ...errors, noConnection: true };
+        } else {
+          if (error.password) {
+            errors = { ...errors, invalidPassword : true };
+          }
+          if (error.username) {
+            errors = { ...errors,  emailNotFound: true };
+          }
+          if (!error.password && !error.username) {
+            errors = { ...errors, unknownError: true };
+          }
+        }
 
-        this.authForm.setErrors({
-          ...error,
-          // invalidPassword: !!error.password,
-          // emailNotFound: !!error.username,
-          // unknownError: !!error,
-        });
+        this.authForm.setErrors(errors);
       },
     );
   }

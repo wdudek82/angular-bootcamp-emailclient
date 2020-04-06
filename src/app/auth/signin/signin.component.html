@@ -1,17 +1,17 @@
-<h3>Log in to Account</h3>
+<h3>Sign In</h3>
 
 <form class="ui form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
   <div>
     <app-input
-      [control]="authForm.get('username')"
       label="Username"
+      [control]="authForm.get('username')"
     ></app-input>
   </div>
   <div>
     <app-input
       type="password"
-      [control]="authForm.get('password')"
       label="Password"
+      [control]="authForm.get('password')"
     ></app-input>
   </div>
 
@@ -23,10 +23,10 @@
     "
     class="ui red basic label"
   >
-    <p *ngIf="authForm.errors?.username">Email not found.</p>
-    <p *ngIf="authForm.errors?.password">Invalid password.</p>
-    <p *ngIf="authForm.errors?.noConnection">No internet connection.</p>
+    <p *ngIf="authForm.errors?.emailNotFound">Email not found.</p>
+    <p *ngIf="authForm.errors?.invalidPassword">Invalid password.</p>
     <p *ngIf="authForm.errors?.unknownError">Something went wrong.</p>
+    <p *ngIf="authForm.errors?.noConnection">No internet connection.</p>
   </div>
 
   <div>
