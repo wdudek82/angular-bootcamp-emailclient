@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
 
     this.authService.signin(this.authForm.value).subscribe(
       () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/', 'inbox']);
       },
       (errorObj) => {
         let errors = {};

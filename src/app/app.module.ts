@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
+import { InboxModule } from './inbox/inbox.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
     AppRoutingModule,
     SharedModule,
     AuthModule,
+    InboxModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

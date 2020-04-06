@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '../validators/password-validator';
 import { UsernameValidator } from '../validators/username-validator';
-import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
   );
 
   constructor(
+    private router: Router,
     private passwordValidator: PasswordValidator,
     private usernameValidator: UsernameValidator,
     private authService: AuthService,
@@ -53,7 +54,7 @@ export class SignupComponent implements OnInit {
       (response) => {
         this.authForm.reset();
 
-        // Navigate to some other route
+        this.router.navigate(['/', 'inbox']);
       },
       (errorObj) => {
         if (!errorObj.status) {
