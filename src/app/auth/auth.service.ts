@@ -64,7 +64,7 @@ export class AuthService {
     );
   }
 
-  signout() {
+  signout(): Observable<{}> {
     return this.http
       .post<{}>(`${this.baseUrl}/signout`, {})
       .pipe(tap(() => this.signedin$.next(false)));
