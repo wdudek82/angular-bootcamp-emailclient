@@ -4,9 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  // {
-  //   path: 'auth', component: AuthRoutingModule,
-  // },
   {
     path: 'inbox',
     canLoad: [AuthGuard],

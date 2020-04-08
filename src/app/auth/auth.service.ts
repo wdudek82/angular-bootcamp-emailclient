@@ -30,7 +30,7 @@ export interface SignupCredentials extends SigninCredentials {
 })
 export class AuthService {
   baseUrl = 'https://api.angular-email.com/auth';
-  signedin$ = new BehaviorSubject<boolean>(false);
+  signedin$ = new BehaviorSubject<boolean>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +38,6 @@ export class AuthService {
     return this.http.post<UsernameAvailableResponse>(
       `${this.baseUrl}/username`,
       { username },
-      { withCredentials: true },
     );
   }
 
@@ -57,9 +56,7 @@ export class AuthService {
   checkAuth(): Observable<SignedinResponse> {
     return this.http.get<SignedinResponse>(`${this.baseUrl}/signedin`).pipe(
       tap((res) => {
-        if (res.authenticated) {
-          this.signedin$.next(true);
-        }
+        this.signedin$.next(res.authenticated);
       }),
     );
   }
