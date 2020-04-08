@@ -13,6 +13,7 @@ export class EmailIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.emailService.getEmails().subscribe((emails) => {
+      console.log('email-index:', emails);
       this.emails = emails;
     });
   }
