@@ -19,7 +19,7 @@ export class EmailResolverService implements Resolve<Email> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<Email> | Promise<Email> | Email {
-    const emailId = route.params.id;
-    return this.emailService.getEmailById(emailId);
+    const { id } = route.params;
+    return this.emailService.getEmailById(id);
   }
 }
