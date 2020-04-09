@@ -10,12 +10,12 @@ import { Email } from '../email';
 export class EmailShowComponent implements OnInit {
   email: Email;
 
-  constructor(private route: ActivatedRoute) {
-    this.email = route.snapshot.data.email;
-    route.data.subscribe(({ email }) => {
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.email = this.route.snapshot.data.email;
+    this.route.data.subscribe(({ email }) => {
       this.email = email;
     });
   }
-
-  ngOnInit(): void {}
 }
