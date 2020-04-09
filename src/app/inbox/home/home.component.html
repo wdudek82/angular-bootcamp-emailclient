@@ -6,3 +6,9 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<app-modal (dismiss)="'foo'">
+  <div modalTitle>This is a header</div>
+  <div>Modal's content</div>
+  <div modalFooter>This is a footer</div>
+</app-modal>
