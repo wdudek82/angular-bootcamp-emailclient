@@ -1,15 +1,19 @@
 <div class="field" [class.error]="showErrors()">
   <label>
     {{ label }}
-    <input [formControl]="control" [type]="type" />
+    <input *ngIf="!isTextarea" [formControl]="control" [type]="type" />
+    <textarea *ngIf="isTextarea" [formControl]="control"></textarea>
   </label>
   <div *ngIf="showErrors()" class="ui pointing red basic label">
     <p *ngIf="control.errors?.required">Field is required.</p>
+    <p *ngIf="control.errors?.email">Enter a valid email.</p>
     <p *ngIf="control.errors?.minlength">
-      Needs to be at least {{ control.errors.minlength.requiredLength }} characters.
+      Needs to be at least
+      {{ control.errors.minlength.requiredLength }} characters.
     </p>
     <p *ngIf="control.errors?.maxlength">
-      Needs to be at shorter than {{ control.errors.minlength.actualLength }} characters.
+      Needs to be at shorter than
+      {{ control.errors.minlength.actualLength }} characters.
     </p>
     <p *ngIf="control.errors?.pattern">Invalid format.</p>
     <p *ngIf="control.errors?.notUnique">This name is already in use.</p>
